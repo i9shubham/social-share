@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import mongoConnection from './config/dbconfig.js';
 
 import userRoutes from './routes/user.js';
+import postRoutes from './routes/post.js';
+import commentRoutes from './routes/comment.js';
 
 dotenv.config();
 const app = express();
@@ -17,6 +19,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/user', userRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

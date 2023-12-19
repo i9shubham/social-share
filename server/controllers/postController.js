@@ -59,3 +59,34 @@ export const addPost = async (req, res) => {
         });
     }
 };
+
+export const searchPost = async (req, res) => {
+    const { keywords } = req.query;
+    try {
+        const posts = await postModel.find({
+            message: { $regex: keywords, $options: 'i' },
+        });
+        if (posts) {
+            return res.status(200).send({
+                code: 200,
+                message: `Post getting successful`,
+                success: true,
+                docs: posts,
+            });
+        } else {
+            return res.status(400).send({
+                code: 400,
+                message: 'Post not found',
+                success: false,
+            });
+        }
+    } catch (error) {
+        // console.log(error);
+        return res.status(500).send({
+            code: 500,
+            message: 'Internal Server Error',
+            success: false,
+            error: error.message,
+        });
+    }
+};

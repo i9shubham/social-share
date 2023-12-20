@@ -2,7 +2,6 @@ import postModel from '../models/postSchema.js';
 
 export const getPosts = async (req, res) => {
     try {
-        console.log("called")
         const posts = await postModel.paginate(
             {},
             { page: req.query.page || 1, limit: 10, sort: { createdAt: -1 } }
@@ -36,7 +35,6 @@ export const addPost = async (req, res) => {
     const post = req.body;
     const newPost = new postModel({ ...post });
     try {
-        console.log(post)
         await newPost.save();
         if (!newPost) {
             return res.status(400).send({
@@ -66,8 +64,9 @@ export const searchPost = async (req, res) => {
     const { keywords } = req.query;
     try {
         const posts = await postModel.find({
-            message: { $regex: keywords, $options: 'i' },
+            content: { $regex: keywords, $options: 'i' },
         });
+        // console.log(posts)
         if (posts) {
             return res.status(200).send({
                 code: 200,

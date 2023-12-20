@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const addComment = (comment) => async () => {
+export const addComment = async (comment) => {
     try {
         const data = await axios.post(
-            'https://socialsharebackend.onrender.com/api/comment/addComment',
+            'http://localhost:8080/api/comment/addComment',
             comment
         );
         return data;
@@ -12,10 +12,10 @@ export const addComment = (comment) => async () => {
     }
 };
 
-export const getComments = () => async () => {
+export const getComments = async () => {
     try {
         const data = await axios.get(
-            'https://socialsharebackend.onrender.com/api/comment/getAllComments'
+            'http://localhost:8080/api/comment/getAllComments'
         );
         return data;
     } catch (error) {

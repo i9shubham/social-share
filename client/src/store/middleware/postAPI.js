@@ -1,17 +1,23 @@
 import axios from 'axios';
 
-export const addPost = (post) => async () => {
+export const addPost = async (post) => {
     try {
-        const data = await axios.post('https://socialsharebackend.onrender.com/api/post/addPost', post);
+        const data = await axios.post(
+            'http://localhost:8080/api/post/addPost',
+            post
+        );
+        console.log(post);
         return data;
     } catch (error) {
         console.log(error);
     }
 };
 
-export const getPosts = () => async () => {
+export const getPosts = async () => {
     try {
-        const data = await axios.get('https://socialsharebackend.onrender.com/api/post/getPosts');
+        const data = await axios.get(
+            'http://localhost:8080/api/post/getAllPosts'
+        );
         return data;
     } catch (error) {
         console.log(error);

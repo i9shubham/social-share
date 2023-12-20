@@ -2,6 +2,7 @@ import postModel from '../models/postSchema.js';
 
 export const getPosts = async (req, res) => {
     try {
+        console.log("called")
         const posts = await postModel.paginate(
             {},
             { page: req.query.page || 1, limit: 10, sort: { createdAt: -1 } }
@@ -35,6 +36,7 @@ export const addPost = async (req, res) => {
     const post = req.body;
     const newPost = new postModel({ ...post });
     try {
+        console.log(post)
         await newPost.save();
         if (!newPost) {
             return res.status(400).send({
@@ -50,7 +52,7 @@ export const addPost = async (req, res) => {
             });
         }
     } catch (error) {
-        // console.log(error);
+        console.log(error);
         return res.status(500).send({
             code: 500,
             message: 'Internal Server Error',

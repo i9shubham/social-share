@@ -4,10 +4,13 @@ import Homepage from './pages/Homepage';
 import { useEffect } from 'react';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserDetails } from './store/reducers/userSlice';
 
 function App() {
+    const isLoading = useSelector(
+        (state) => state.post.isLoading || state.comment.isLoading
+    );
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const getUser = window.localStorage.getItem('user');
@@ -24,6 +27,7 @@ function App() {
     return (
         <>
             {getUser && <Navbar />}
+            {isLoading && <p>Loading...</p>}
             <Routes>
                 <Route exact path='/' element={<Homepage />} />
                 <Route exact path='/homepage' element={<Homepage />} />

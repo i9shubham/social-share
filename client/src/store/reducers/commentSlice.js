@@ -3,6 +3,7 @@ import { addNewComment, getAllComments } from '../actions/commentActions';
 
 const initialState = {
     comments: [],
+    isLoading: false,
 };
 
 const commentSlice = createSlice({
@@ -12,10 +13,15 @@ const commentSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(addNewComment.fulfilled, (state, action) => {
             state.comments = action.payload;
+            state.isLoading = false;
         });
-        builder.addCase(getAllComments.fulfilled, (state, action) => {
-            state.comments = action.payload;
-        });
+        builder.addCase(getAllComments.pending, (state) => {
+            state.isLoading = true;
+        }),
+            builder.addCase(getAllComments.fulfilled, (state, action) => {
+                state.comments = action.payload;
+                state.isLoading = false;
+            });
     },
 });
 

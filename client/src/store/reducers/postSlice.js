@@ -9,6 +9,7 @@ const initialState = {
     posts: [],
     searchPosts: [],
     openAdd: false,
+    isLoading: false,
 };
 
 const postSlice = createSlice({
@@ -22,13 +23,22 @@ const postSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(addNewPost.fulfilled, (state, action) => {
             state.posts = action.payload;
+            state.isLoading = false;
         }),
+            builder.addCase(getAllPosts.pending, (state) => {
+                state.isLoading = true;
+            }),
             builder.addCase(getAllPosts.fulfilled, (state, action) => {
                 state.posts = action.payload;
+                state.isLoading = false;
+            }),
+            builder.addCase(searchAllPosts.pending, (state) => {
+                state.isLoading = true;
+            }),
+            builder.addCase(searchAllPosts.fulfilled, (state, action) => {
+                state.searchPosts = action.payload;
+                state.isLoading = false;
             });
-        builder.addCase(searchAllPosts.fulfilled, (state, action) => {
-            state.searchPosts = action.payload;
-        });
     },
 });
 

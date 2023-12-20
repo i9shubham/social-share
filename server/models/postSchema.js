@@ -6,6 +6,9 @@ const Post = mongoose.Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
         },
+        username: {
+            type: String,
+        },
         content: {
             type: String,
             require: true,

@@ -3,7 +3,7 @@ import commentModel from '../models/commentSchema';
 export const getComments = async (req, res) => {
     try {
         const comments = await commentModel.paginate(
-            {post: req.params.postId},
+            { post: req.params.postId },
             { page: req.query.page || 1, limit: 10, sort: { createdAt: -1 } }
         );
         if (comments) {
@@ -33,7 +33,7 @@ export const getComments = async (req, res) => {
 
 export const addComment = async (req, res) => {
     const post = req.body;
-    const newPost = new commentModel({ ...post, user: req.userId });
+    const newPost = new commentModel({ ...post });
     try {
         await newPost.save();
         if (!newPost) {

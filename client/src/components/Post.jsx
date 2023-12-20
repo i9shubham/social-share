@@ -17,17 +17,17 @@ import MapsUgcIcon from '@mui/icons-material/MapsUgc';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { openAddPost } from '../store/reducers/postSlice';
-import { addNewPost } from '../store/actions/postActions';
+import { addNewPost, getAllPosts } from '../store/actions/postActions';
 import { getAllComments } from '../store/actions/commentActions';
 import Comment from './Comment';
 
 const Post = ({ data }) => {
     const { openAdd } = useSelector((state) => state.post);
-    const { userDetails } = useSelector((state) => state.user);
+    // const { userDetails } = useSelector((state) => state.user);
     const { comments } = useSelector((state) => state.comment);
     const user = window.localStorage.getItem('user');
     const id = window.localStorage.getItem('id');
-    console.log(user, userDetails);
+    // console.log(user, userDetails);
     const dispatch = useDispatch();
 
     const handleCancelPopup = () => {
@@ -42,7 +42,7 @@ const Post = ({ data }) => {
         console.log(post);
         dispatch(addNewPost({ user: id, username: user, content: post }));
         dispatch(openAddPost(!openAdd));
-        window.location.reload();
+        dispatch(getAllPosts());
     };
 
     const handleOpenComment = (e, id) => {

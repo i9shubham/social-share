@@ -21,6 +21,7 @@ const functions = {
                     code: 400,
                     message: 'User is already exists please try to login',
                     success: true,
+                    user: exists,
                 });
 
             const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -41,6 +42,7 @@ const functions = {
                     code: 201,
                     message: `User ${User.username} created successfully`,
                     success: true,
+                    user: User,
                 });
             }
         } catch (error) {

@@ -5,11 +5,12 @@ import { getAllPosts } from '../store/actions/postActions';
 
 const Homepage = () => {
     const dispatch = useDispatch();
-    const {data} = useSelector((state) => state.post);
+    const { posts } = useSelector((state) => state.post);
 
     useEffect(() => {
         dispatch(getAllPosts());
     }, [dispatch]);
+    console.log(posts);
 
     // const data = [
     //     {
@@ -49,7 +50,7 @@ const Homepage = () => {
             <div>
                 <h1>Homepage</h1>
             </div>
-            <Post data={data} />
+            <Post data={posts?.docs?.docs} />
         </>
     );
 };

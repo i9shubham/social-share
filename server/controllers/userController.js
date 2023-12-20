@@ -7,27 +7,25 @@ const saltRounds = 10;
 const functions = {
     signup: async (req, res) => {
         try {
-            const { username, email, bio, password } = req.body;
+            const { username, password } = req.body;
             // console.log(req.body)
-            if (!username || !email || !password)
+            if (!username || !password)
                 return res.status(200).send({
                     code: 400,
                     message: 'enter the all fields',
                     success: false,
                 });
-            const exists = await userModel.findOne({ email });
+            const exists = await userModel.findOne({ username: username });
             if (exists)
                 return res.status(200).send({
                     code: 400,
                     message: 'User is already exists please try to login',
-                    success: false,
+                    success: true,
                 });
 
             const hashedPassword = await bcrypt.hash(password, saltRounds);
             const User = new userModel({
                 username,
-                email,
-                bio,
                 password: hashedPassword,
             });
             // console.log(User)

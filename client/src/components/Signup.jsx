@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import CssBaseline from '@mui/material/CssBaseline';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-// import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/material';
@@ -15,6 +13,8 @@ const Signup = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
     const user = window.localStorage.getItem('user');
+    // const id = window.localStorage.getItem('id');
+    const { userDetails } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
@@ -30,10 +30,17 @@ const Signup = () => {
                 password: data.get('password'),
             })
         );
+        console.log(userDetails);
         window.localStorage.setItem('user', data.get('username'));
         console.log(data);
         navigate('/homepage');
     };
+
+    useEffect(() => {
+        if (userDetails) {
+            window.localStorage.setItem('id', userDetails?.user?._id);
+        }
+    }, [userDetails]);
 
     const handleHomePage = () => {
         navigate('/homepage');
@@ -93,16 +100,6 @@ const Signup = () => {
                                     autoFocus
                                 />
                             </Grid>
-                            {/* <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id='lastName'
-                                label='username'
-                                name='username'
-                                autoComplete='family-name'
-                            />
-                        </Grid> */}
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -124,13 +121,6 @@ const Signup = () => {
                         >
                             Sign Up
                         </Button>
-                        {/* <Grid container justifyContent='flex-end'>
-                        <Grid item>
-                            <Link href='#' variant='body2'>
-                                Already have an account? Sign in
-                            </Link>
-                        </Grid>
-                    </Grid> */}
                     </Box>
                 </Box>
             )}

@@ -6,7 +6,6 @@ const Comment = mongoose.Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             require: true,
-            unique: true,
         },
         post: {
             type: mongoose.Schema.Types.ObjectId,

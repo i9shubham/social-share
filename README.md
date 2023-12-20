@@ -1,6 +1,6 @@
 # social-share
 
-Socail Share is an web application where user can create account and post their thoughts also he/she can comment on their/other's post. Someone can search posts.
+Social Share is an web application where user can create account and post their thoughts also he/she can comment on their/other's post. Someone can search posts.
 
 ## Setting Up Locally
 

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const Comment = mongoose.Schema(
     {
@@ -19,4 +20,5 @@ const Comment = mongoose.Schema(
     { versionKey: false }
 );
 
+Comment.plugin(mongoosePaginate);
 export default mongoose.model('Comment', Comment);

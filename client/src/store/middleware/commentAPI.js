@@ -12,10 +12,10 @@ export const addComment = async (comment) => {
     }
 };
 
-export const getComments = async () => {
+export const getComments = async (id) => {
     try {
         const data = await axios.get(
-            'http://localhost:8080/api/comment/getAllComments'
+            `http://localhost:8080/api/comment/getAllComments/${id}`
         );
         return data;
     } catch (error) {

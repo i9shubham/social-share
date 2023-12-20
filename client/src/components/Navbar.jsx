@@ -1,5 +1,5 @@
 import AppBar from '@mui/material/AppBar';
-import { Box } from '@mui/material';
+import { Box, Card } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
@@ -10,11 +10,15 @@ import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
 
 import '../App.css';
-import { dispatch } from '../store';
+import { useDispatch, useSelector } from 'react-redux';
 import { openAddPost } from '../store/reducers/postSlice';
+import { searchAllPosts } from '../store/actions/postActions';
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
+    const dispatch = useDispatch();
+    const { searchPosts } = useSelector((state) => state.post);
+
     // const [text, setText] = useState('');
     // const navigate = useNavigate();
     // const [anchorElNav, setAnchorElNav] = useState(null);
@@ -44,7 +48,9 @@ const Navbar = () => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         console.log(data.get('search'));
+        dispatch(searchAllPosts(data.get('search')));
         // console.log(text);
+        console.log(searchPosts);
     };
 
     return (
@@ -89,6 +95,11 @@ const Navbar = () => {
                                 // onChange={(e) => setText(e.target.value)}
                             />
                         </form>
+                        <div>
+                            {searchPosts?.map((post, i) => (
+                                <Card sx={{ display: 'flex' }} key={i}></Card>
+                            ))}
+                        </div>
                     </Box>
                 </Toolbar>
             </Container>

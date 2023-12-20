@@ -3,7 +3,7 @@ import axios from 'axios';
 export const addComment = async (comment) => {
     try {
         const data = await axios.post(
-            'http://localhost:8080/api/comment/addComment',
+            'https://socialsharebackend.onrender.com/api/comment/addComment',
             comment
         );
         return data;
@@ -15,7 +15,7 @@ export const addComment = async (comment) => {
 export const getComments = async (id) => {
     try {
         const data = await axios.get(
-            `http://localhost:8080/api/comment/getAllComments/${id}`
+            `https://socialsharebackend.onrender.com/api/comment/getAllComments/${id}`
         );
         return data;
     } catch (error) {

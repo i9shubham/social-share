@@ -33,7 +33,7 @@ export const getPosts = async (req, res) => {
 
 export const addPost = async (req, res) => {
     const post = req.body;
-    const newPost = new postModel({ ...post, user: req.userId });
+    const newPost = new postModel({ ...post });
     try {
         await newPost.save();
         if (!newPost) {

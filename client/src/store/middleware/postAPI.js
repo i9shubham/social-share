@@ -23,3 +23,19 @@ export const getPosts = async () => {
         console.log(error);
     }
 };
+
+export const searchPosts = async (text) => {
+    try {
+        const data = await axios.get(
+            `http://localhost:8080/api/post/searchPost`,
+            {
+                params: {
+                    keywords: text,
+                },
+            }
+        );
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};

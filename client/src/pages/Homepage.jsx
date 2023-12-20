@@ -10,7 +10,7 @@ const Homepage = () => {
     useEffect(() => {
         dispatch(getAllPosts());
     }, [dispatch]);
-    console.log(posts);
+    // console.log(posts);
 
     // const data = [
     //     {

@@ -92,7 +92,7 @@ const Navbar = () => {
                         </IconButton>
                     </Tooltip>
                 </Box> */}
-            {getUser && (
+            {!getUser && (
                 <Box sx={{ mb: 1 }}>
                     <form onSubmit={(e) => handleSearch(e)} action=''>
                         {/* <TextField

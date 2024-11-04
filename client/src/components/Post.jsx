@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box } from '@mui/material';
+import { Avatar, Box, CardHeader } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -20,6 +20,9 @@ import { openAddPost } from '../store/reducers/postSlice';
 import { addNewPost, getAllPosts } from '../store/actions/postActions';
 import { getAllComments } from '../store/actions/commentActions';
 import Comment from './Comment';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 const Post = ({ data }) => {
     const { openAdd } = useSelector((state) => state.post);
@@ -61,41 +64,84 @@ const Post = ({ data }) => {
             {data?.map((post) => {
                 return (
                     <Card
-                        sx={{ textAlign: 'left', marginBottom: '10px' }}
+                        sx={{
+                            textAlign: 'left',
+                            padding: 2,
+                            margin: 2,
+                            // backgroundColor: '#f5f6f3',
+                            boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.1)',
+                        }}
                         variant='outlined'
                         key={post._id}
                     >
+                        <CardHeader
+                            avatar={
+                                <Avatar
+                                    alt={post.user.username}
+                                    src={post.image}
+                                />
+                            }
+                            title={post.user.username}
+                            subheader={post.user.bio}
+                        />
+
                         <CardContent>
-                            <Typography
-                                sx={{
-                                    fontSize: 14,
-                                    textDecoration: 'underline',
-                                }}
-                                color='text.secondary'
-                                gutterBottom
-                            >
-                                {post.username}
-                            </Typography>
-                            <Typography variant='h5' component='div'>
-                                {post.content}
-                            </Typography>
+                            <Typography variant='p'>{post.post}</Typography>
                         </CardContent>
                         <hr />
                         <CardActions
                             sx={{
                                 display: 'flex',
-                                justifyContent: 'flex-end',
+                                justifyContent: 'space-between',
                             }}
                         >
+                            <div>
+                                <Button
+                                    size='small'
+                                    onClick={() =>
+                                        console.log('Upvote clicked')
+                                    }
+                                >
+                                    <ThumbUpIcon />
+                                    <Typography
+                                        variant='caption'
+                                        display='block'
+                                    >
+                                        {post.stats.upvotes}
+                                    </Typography>
+                                </Button>
+                                <Button size='small'>
+                                    <FavoriteIcon />
+                                    <Typography
+                                        variant='caption'
+                                        display='block'
+                                    >
+                                        {post.stats.favorites}
+                                    </Typography>
+                                </Button>
+                                <Button size='small'>
+                                    <InsightsIcon />
+                                    <Typography
+                                        variant='caption'
+                                        display='block'
+                                    >
+                                        {post.stats.insights}
+                                    </Typography>
+                                </Button>
+                            </div>
                             <Button
                                 onClick={(e) => handleOpenComment(e, post._id)}
                                 size='small'
                             >
                                 <MapsUgcIcon />
+                                <Typography variant='caption' display='block'>
+                                    {post.stats.commentsCount}
+                                </Typography>
                             </Button>
                         </CardActions>
                         {show === post._id && (
                             <Comment
+                                size='small'
                                 post={post._id}
                                 data={comments?.docs?.docs}
                             />

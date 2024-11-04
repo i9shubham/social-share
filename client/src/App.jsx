@@ -49,8 +49,8 @@ function App() {
                       borderRadius: '2px'
                     },
                     maxWidth: '400px',
-                    backgroundColor: '#fff',
-                    boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.1)',
+                    // backgroundColor: '#fff',
+                    boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.3)',
                 }}
             >
                 <Grid item xs={12}>

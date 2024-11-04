@@ -41,6 +41,13 @@ function App() {
                     width: '100%',
                     height: '100vh',
                     overflow: 'auto',
+                    '&::-webkit-scrollbar': {
+                      width: '2px'
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#adb3bd',
+                      borderRadius: '2px'
+                    },
                     maxWidth: '400px',
                     backgroundColor: '#fff',
                     boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.1)',

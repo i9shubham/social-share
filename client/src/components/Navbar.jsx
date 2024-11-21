@@ -4,12 +4,11 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { openAddPost } from '../store/reducers/postSlice';
+// import { openAddPost } from '../store/reducers/postSlice';
 import { searchAllPosts } from '../store/actions/postActions';
 
 const Navbar = () => {
     const getUser = window.localStorage.getItem('user');
-    console.log(!getUser);
 
     const dispatch = useDispatch();
     const { searchPosts } = useSelector((state) => state.post);
@@ -31,10 +30,10 @@ const Navbar = () => {
     //     setAnchorElNav(null);
     // };
 
-    const handleAddPost = () => {
-        console.log('clicked');
-        dispatch(openAddPost(!openAddPost));
-    };
+    // const handleAddPost = () => {
+    //     console.log('clicked');
+    //     dispatch(openAddPost(!openAddPost));
+    // };
 
     // const handleCloseUserMenu = () => {
     //     setAnchorElUser(null);

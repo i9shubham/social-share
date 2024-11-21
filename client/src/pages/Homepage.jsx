@@ -89,7 +89,7 @@ const Homepage = () => {
     ];
 
     return (
-        <div style={{ marginTop: '7rem' }}>
+        <div style={{ marginTop: '7rem', marginBottom: '7rem' }}>
             <Post data={data} />
         </div>
     );

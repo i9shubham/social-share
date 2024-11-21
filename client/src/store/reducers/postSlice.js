@@ -93,9 +93,13 @@ const postSlice = createSlice({
             state.openAdd = !state.openAdd;
         },
         filterPosts: (state, action) => {
-            state.posts = state.posts.filter((post) =>
-                post.post.includes(action.payload)
-            );
+            if (action.payload === '') {
+                return state.posts;
+            } else {
+                state.posts = state.posts.filter((post) =>
+                    post.post.includes(action.payload)
+                );
+            }
         },
     },
     extraReducers: (builder) => {
@@ -120,7 +124,7 @@ const postSlice = createSlice({
     },
 });
 
-export const { openAddPost } = postSlice.actions;
+export const { openAddPost, filterPosts } = postSlice.actions;
 export const userSelector = (state) => state.post;
 
 export default postSlice.reducer;

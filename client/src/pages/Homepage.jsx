@@ -29,19 +29,19 @@ const Homepage = () => {
         {
             _id: 2,
             image: 'https://placehold.co/400x400/orange/white?text=t',
-            user: { username: 'tushar91', bio: 'DRX/Pharmasyst' },
+            user: { username: 'tushar91', bio: 'Doctorate' },
             stats: {
                 upvotes: 45,
                 favorites: 32,
                 insights: 20,
                 commentsCount: 36,
             },
-            post: 'Working as a DRX/Pharmasyst, I focus on pharmaceutical research and development.',
+            post: 'Working as a doctor, I focus on medical science and research.',
         },
         {
             _id: 3,
             image: 'https://placehold.co/400x400/orange/white?text=b',
-            user: { username: 'bunny6', bio: 'Developer' },
+            user: { username: 'stargirl', bio: 'Developer' },
             stats: {
                 upvotes: 45,
                 favorites: 32,

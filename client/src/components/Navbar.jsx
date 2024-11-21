@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 // import { openAddPost } from '../store/reducers/postSlice';
-import { searchAllPosts } from '../store/actions/postActions';
+import { filterPosts } from '../store/reducers/postSlice';
 
 const Navbar = () => {
     const getUser = window.localStorage.getItem('user');
@@ -42,7 +42,7 @@ const Navbar = () => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         console.log(data.get('search'));
-        dispatch(searchAllPosts(data.get('search')));
+        // dispatch(searchAllPosts(data.get('search')));
         console.log(searchPosts);
     };
 
@@ -80,6 +80,9 @@ const Navbar = () => {
                                 borderRadius: '10px',
                                 width: '100%',
                             }}
+                            onChange={(e) =>
+                                dispatch(filterPosts(e.target.value))
+                            }
                             id='filled-basic'
                             placeholder='Search topics'
                             InputProps={{

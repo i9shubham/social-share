@@ -22,7 +22,7 @@ import { getAllComments } from '../store/actions/commentActions';
 import Comment from './Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import InsightsIcon from '@mui/icons-material/Insights';
+import ShareIcon from '@mui/icons-material/Share';
 
 const Post = ({ data }) => {
     const { openAdd } = useSelector((state) => state.post);
@@ -120,7 +120,7 @@ const Post = ({ data }) => {
                                     </Typography>
                                 </Button>
                                 <Button size='small'>
-                                    <InsightsIcon />
+                                    <ShareIcon />
                                     <Typography
                                         variant='caption'
                                         display='block'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
@@ -14,7 +14,7 @@ import {
     InputAdornment,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { addNewUser } from '../../store/actions/userActions';
+// import { addNewUser } from '../../store/actions/userActions';
 
 const Login = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +23,7 @@ const Login = () => {
     const user = window.localStorage.getItem('user');
     // const id = window.localStorage.getItem('id');
     const { userDetails } = useSelector((state) => state.user);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -35,22 +35,19 @@ const Login = () => {
         event.preventDefault();
     };
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+    const onSubmit = async (data) => {
+        const newData = data;
+
         console.log({
-            username: data.get('username'),
-            password: data.get('password'),
+            username: newData.user,
         });
-        await dispatch(
-            addNewUser({
-                username: data.get('username'),
-                password: data.get('password'),
-            })
-        );
-        console.log(userDetails);
-        window.localStorage.setItem('user', data.get('username'));
-        console.log(data);
+        // await dispatch(
+        //     addNewUser({
+        //         username: newData.get('username'),
+        //         password: newData.get('password'),
+        //     })
+        // );
+        window.localStorage.setItem('user', newData.email);
         navigate('/homepage');
     };
 
@@ -87,11 +84,6 @@ const Login = () => {
     }, []);
 
     return (
-        // <Container
-        //     xs={{ backgroundColor: 'inherit' }}
-        //     component='main'
-        //     maxWidth='xs'
-        // >
         <>
             {loggedIn && (
                 <>
@@ -99,7 +91,6 @@ const Login = () => {
                     <button onClick={handleHomePage}>Go to Homepage</button>
                 </>
             )}
-            {/* <CssBaseline /> */}
             {!loggedIn && (
                 <Container
                     sx={{
@@ -222,7 +213,11 @@ const Login = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} mb={1}>
-                                <Button size='small' type='submit' variant='contained'>
+                                <Button
+                                    size='small'
+                                    type='submit'
+                                    variant='contained'
+                                >
                                     Login
                                 </Button>
                             </Grid>
@@ -236,7 +231,10 @@ const Login = () => {
                                     <Typography
                                         variant='p'
                                         color='primary'
-                                        sx={{ cursor: 'pointer', textDecoration: 'underline' }}
+                                        sx={{
+                                            cursor: 'pointer',
+                                            textDecoration: 'underline',
+                                        }}
                                         onClick={() => navigate('/signup')}
                                     >
                                         Signup
@@ -248,7 +246,6 @@ const Login = () => {
                 </Container>
             )}
         </>
-        // </Container>
     );
 };
 

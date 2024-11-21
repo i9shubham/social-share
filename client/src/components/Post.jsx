@@ -93,16 +93,25 @@ const Post = ({ data }) => {
                             sx={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
+                                alignItems: 'center',
+                                width: '100%',
                             }}
                         >
-                            <div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    width: '60%',
+                                }}
+                            >
                                 <Button
                                     size='small'
                                     onClick={() =>
                                         console.log('Upvote clicked')
                                     }
                                 >
-                                    <ThumbUpIcon />
+                                    <ThumbUpIcon fontSize='small' />
                                     <Typography
                                         variant='caption'
                                         display='block'
@@ -111,7 +120,7 @@ const Post = ({ data }) => {
                                     </Typography>
                                 </Button>
                                 <Button size='small'>
-                                    <FavoriteIcon />
+                                    <FavoriteIcon fontSize='small' />
                                     <Typography
                                         variant='caption'
                                         display='block'
@@ -120,7 +129,7 @@ const Post = ({ data }) => {
                                     </Typography>
                                 </Button>
                                 <Button size='small'>
-                                    <ShareIcon />
+                                    <ShareIcon fontSize='small' />
                                     <Typography
                                         variant='caption'
                                         display='block'
@@ -133,7 +142,7 @@ const Post = ({ data }) => {
                                 onClick={(e) => handleOpenComment(e, post._id)}
                                 size='small'
                             >
-                                <MapsUgcIcon />
+                                <MapsUgcIcon fontSize='small' />
                                 <Typography variant='caption' display='block'>
                                     {post.stats.commentsCount}
                                 </Typography>

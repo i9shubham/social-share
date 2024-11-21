@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
@@ -14,7 +14,7 @@ import {
     InputAdornment,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { addNewUser } from '../../store/actions/userActions';
+// import { addNewUser } from '../../store/actions/userActions';
 
 const Signup = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +23,7 @@ const Signup = () => {
     const user = window.localStorage.getItem('user');
     // const id = window.localStorage.getItem('id');
     const { userDetails } = useSelector((state) => state.user);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -35,22 +35,19 @@ const Signup = () => {
         event.preventDefault();
     };
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+    const onSubmit = async (data) => {
+        const newData = data;
         console.log({
-            username: data.get('username'),
-            password: data.get('password'),
+            username: newData.name,
+            email: newData.email,
         });
-        await dispatch(
-            addNewUser({
-                username: data.get('username'),
-                password: data.get('password'),
-            })
-        );
-        console.log(userDetails);
-        window.localStorage.setItem('user', data.get('username'));
-        console.log(data);
+        // await dispatch(
+        //     addNewUser({
+        //         username: data.get('username'),
+        //         password: data.get('password'),
+        //     })
+        // );
+        window.localStorage.setItem('user', newData.name);
         navigate('/homepage');
     };
 

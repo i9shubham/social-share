@@ -93,8 +93,8 @@ const postSlice = createSlice({
             state.openAdd = !state.openAdd;
         },
         filterPosts: (state, action) => {
-            if (action.payload === '') {
-                return state.posts;
+            if (action.payload === '' || action.payload === undefined) {
+                return initialState.posts;
             } else {
                 state.posts = state.posts.filter((post) =>
                     post.post.includes(action.payload)
